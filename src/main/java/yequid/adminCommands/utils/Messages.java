@@ -1,4 +1,4 @@
-package adminCommands.utils;
+package yequid.adminCommands.utils;
 
 public class Messages {
     public static String consoleMessageAboutUsingCommand = "Данную команду можно использовать только в игре!";

@@ -1,13 +1,13 @@
-package adminCommands;
+package yequid.adminCommands;
 
-import adminCommands.commands.FireCommand;
-import adminCommands.commands.FreezeCommand;
-import adminCommands.commands.ShockCommand;
-import adminCommands.commands.UnfreezeCommand;
+import yequid.adminCommands.commands.FireCommand;
+import yequid.adminCommands.commands.FreezeCommand;
+import yequid.adminCommands.commands.ShockCommand;
+import yequid.adminCommands.commands.UnfreezeCommand;
 import cn.nukkit.command.Command;
 import cn.nukkit.plugin.PluginBase;
 
-public class Main extends PluginBase {
+public class Loader extends PluginBase {
     @Override
     public void onEnable() {
         registerCommands();

@@ -1,6 +1,7 @@
-package adminCommands.commands;
+package yequid.adminCommands.commands;
 
-import adminCommands.utils.Messages;
+import yequid.adminCommands.API;
+import yequid.adminCommands.utils.Messages;
 import cn.nukkit.Player;
 import cn.nukkit.Server;
 import cn.nukkit.command.Command;
@@ -45,7 +46,7 @@ public class FireCommand extends Command {
             return false;
         }
 
-        target.setOnFire(60);
+        API.getInstance().burn(target);
         target.sendTitle("§l§cOops...", "§l§fВас подожгли -_-");
         target.sendMessage("Тебя поджег игрок §c" + player.getName());
         player.sendMessage("Ты поджег игрока §c" + target.getName());

@@ -1,6 +1,7 @@
-package adminCommands.commands;
+package yequid.adminCommands.commands;
 
-import adminCommands.utils.Messages;
+import yequid.adminCommands.API;
+import yequid.adminCommands.utils.Messages;
 import cn.nukkit.Player;
 import cn.nukkit.Server;
 import cn.nukkit.command.Command;
@@ -45,7 +46,7 @@ public class UnfreezeCommand extends Command {
             return false;
         }
 
-        target.setImmobile(false);
+        API.getInstance().unfreeze(target);
         target.sendTitle("§l§aSTART", "§lВы были разморожены :3");
         player.sendMessage("Вы успешно разморозили игрока§c " + target.getName());
         target.sendMessage("Вас разморозил игрок §c" + player.getName());

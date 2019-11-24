@@ -1,19 +1,17 @@
-package adminCommands.commands;
+package yequid.adminCommands.commands;
 
-import adminCommands.utils.Messages;
+import yequid.adminCommands.API;
+import yequid.adminCommands.utils.Messages;
 import cn.nukkit.Player;
 import cn.nukkit.Server;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.command.data.CommandParamType;
 import cn.nukkit.command.data.CommandParameter;
-import cn.nukkit.entity.Entity;
-import cn.nukkit.entity.data.EntityMetadata;
-import cn.nukkit.network.protocol.AddEntityPacket;
 
-public class ShockCommand extends Command {
-    public ShockCommand() {
-        super("shock", "ударить игрока молнией", "§fИспользуйте: §7/shock <тег игрока>");
+public class FreezeCommand extends Command {
+    public FreezeCommand() {
+        super("freeze", "заморозить игрока", "Используйте: §7/freeze <тег игрока>");
         getCommandParameters().put("default", new CommandParameter[]{
                 new CommandParameter("player", CommandParamType.TARGET, true)
         });
@@ -48,26 +46,11 @@ public class ShockCommand extends Command {
             return false;
         }
 
-        strike(target);
-        target.setHealth(target.getHealth() - 5);
-        target.setOnFire(5);
-        player.sendMessage("Вы успешно ударили игрока §c" + target.getName() + "§f молнией");
-        target.sendTitle("§l§9LIGHTING");
-        target.sendMessage("Вас ударил молнией игрок §c" + player.getName());
+        API.getInstance().freeze(target);
+        player.sendMessage("Вы успешно заморозили игрока§c " + target.getName());
+        target.sendTitle("§l§cSTOP", "§f§lПроверь чат :3");
+        target.sendMessage("Вас заморозил игрок §c" + player.getName());
 
         return false;
-    }
-
-    private void strike(Player player) {
-        AddEntityPacket addEntityPacket = new AddEntityPacket();
-        addEntityPacket.type = 93;
-        addEntityPacket.entityRuntimeId = Entity.entityCount++;
-        addEntityPacket.metadata = new EntityMetadata();
-        addEntityPacket.x = (float) player.x;
-        addEntityPacket.y = (float) player.y;
-        addEntityPacket.z = (float) player.z;
-        for (Player target : Server.getInstance().getOnlinePlayers().values()) {
-            target.dataPacket(addEntityPacket);
-        }
     }
 }

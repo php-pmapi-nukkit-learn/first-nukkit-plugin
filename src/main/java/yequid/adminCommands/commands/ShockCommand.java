@@ -1,16 +1,20 @@
-package adminCommands.commands;
+package yequid.adminCommands.commands;
 
-import adminCommands.utils.Messages;
+import yequid.adminCommands.API;
+import yequid.adminCommands.utils.Messages;
 import cn.nukkit.Player;
 import cn.nukkit.Server;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.command.data.CommandParamType;
 import cn.nukkit.command.data.CommandParameter;
+import cn.nukkit.entity.Entity;
+import cn.nukkit.entity.data.EntityMetadata;
+import cn.nukkit.network.protocol.AddEntityPacket;
 
-public class FreezeCommand extends Command {
-    public FreezeCommand() {
-        super("freeze", "заморозить игрока", "Используйте: §7/freeze <тег игрока>");
+public class ShockCommand extends Command {
+    public ShockCommand() {
+        super("shock", "ударить игрока молнией", "§fИспользуйте: §7/shock <тег игрока>");
         getCommandParameters().put("default", new CommandParameter[]{
                 new CommandParameter("player", CommandParamType.TARGET, true)
         });
@@ -45,10 +49,10 @@ public class FreezeCommand extends Command {
             return false;
         }
 
-        target.setImmobile();
-        player.sendMessage("Вы успешно заморозили игрока§c " + target.getName());
-        target.sendTitle("§l§cSTOP", "§f§lПроверь чат :3");
-        target.sendMessage("Вас заморозил игрок §c" + player.getName());
+        API.getInstance().shock(target);
+        player.sendMessage("Вы успешно ударили игрока §c" + target.getName() + "§f молнией");
+        target.sendTitle("§l§9LIGHTING");
+        target.sendMessage("Вас ударил молнией игрок §c" + player.getName());
 
         return false;
     }
