@@ -20,7 +20,9 @@ public class Main extends PluginBase {
                 new FireCommand(),
                 new ShockCommand()
         };
-        for(Command command : commands)
+
+        for (Command command : commands) {
             getServer().getCommandMap().register("adminCommands", command);
+        }
     }
 }
