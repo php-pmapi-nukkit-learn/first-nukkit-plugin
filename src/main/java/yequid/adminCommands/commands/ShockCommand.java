@@ -45,7 +45,7 @@ public class ShockCommand extends Command {
         }
 
         if (target.getName().equals(player.getName())) {
-            player.sendMessage("§7Себя поджигать запрещено, иначе будет больно!");
+            player.sendMessage("§7Себя ударить молнией невозможно!");
             return false;
         }
 

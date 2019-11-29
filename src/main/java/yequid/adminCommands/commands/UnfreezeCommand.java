@@ -42,7 +42,7 @@ public class UnfreezeCommand extends Command {
         }
 
         if (target.getName().equals(player.getName())) {
-            player.sendMessage("§7Себя поджигать запрещено, иначе будет больно!");
+            player.sendMessage("§7Себя разморозить невозможно!");
             return false;
         }
 
